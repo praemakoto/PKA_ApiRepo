@@ -20,18 +20,18 @@ public class GreetingController {
                             String.format(template, name));
     }
 
-    @RequestMapping("/test")
-    public Greeting test(@RequestParam(value="name", defaultValue="World") String name) {
-
+    @RequestMapping("/getFlightPrice")
+    public Price test(@RequestParam(value="noFlight", defaultValue="DD3202") String noFlight) {
+    	noFlight = "DD3202";
+    	Double totalPrice = new Double(0);
     	try {
     		FlightyDAO flightyDAO = new FlightyDAO();
-			flightyDAO.connectTest();
+    		totalPrice = flightyDAO.getPriceByFlight(noFlight);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    	    
-    	return new Greeting(counter.incrementAndGet(),
-                            String.format(template, name));
+    	 
+    	return new Price(totalPrice);
     }
 }

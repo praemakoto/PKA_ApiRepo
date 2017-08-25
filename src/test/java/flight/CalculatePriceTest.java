@@ -10,6 +10,6 @@ public class CalculatePriceTest {
 	@Test
 	public void total_price_must_be_214_when_price_100() {
 		CalculatePrice calculatePrice = new CalculatePrice();
-		Assert.assertEquals(214d, calculatePrice.calucationTotalPrice(100), 0d);
+		Assert.assertEquals(214d, calculatePrice.calucationTotalPrice(100d), 0d);
 	}
 }

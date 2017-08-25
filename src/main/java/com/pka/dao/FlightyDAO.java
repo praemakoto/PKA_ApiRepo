@@ -7,8 +7,8 @@ import java.sql.SQLException;
 
 public class FlightyDAO {
 
-	public void connectTest() throws Exception {
-		String sql = "select * from T_AIRPORT";
+	public Double getPriceByFlight(String flight) throws Exception {
+		String sql = "select PRICE from T_FLIGHTLIST where NO_FLIGHT = '" + flight + "'";
 
 		Connection conn = null;
 
@@ -16,13 +16,15 @@ public class FlightyDAO {
 			conn = ConnectionUtils.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			Double price = new Double(0);
 			if (rs.next()) {
-				rs.getString("CODE");
-				rs.getString("NAME");
+				price = rs.getDouble("PRICE");
 			}
 			rs.close();
 			ps.close();
 
+			return price;
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -34,4 +36,5 @@ public class FlightyDAO {
 			}
 		}
 	}
+	
 }
