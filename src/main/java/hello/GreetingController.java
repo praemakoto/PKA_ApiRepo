@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pka.dao.FlightyDAO;
+
 @RestController
 public class GreetingController {
 
@@ -15,6 +17,21 @@ public class GreetingController {
     @RequestMapping("/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
         return new Greeting(counter.incrementAndGet(),
+                            String.format(template, name));
+    }
+
+    @RequestMapping("/test")
+    public Greeting test(@RequestParam(value="name", defaultValue="World") String name) {
+
+    	try {
+    		FlightyDAO flightyDAO = new FlightyDAO();
+			flightyDAO.connectTest();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    	    
+    	return new Greeting(counter.incrementAndGet(),
                             String.format(template, name));
     }
 }

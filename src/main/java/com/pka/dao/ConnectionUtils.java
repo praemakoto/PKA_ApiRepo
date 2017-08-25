@@ -7,8 +7,9 @@ import java.util.Properties;
 public class ConnectionUtils {
 
 	public static Connection getConnection() throws Exception {
-		String userName = "root";
-		String password = "6617677a842bc99d79b3bbf3d8";
+		String db = "pka_booking";
+		String userName = "booking";
+		String password = "password";
 		String serverName = "139.59.229.170";
 		String portNumber = "3306";
 		
@@ -20,7 +21,7 @@ public class ConnectionUtils {
         conn = DriverManager.getConnection(
                    "jdbc:mysql://" +
                    serverName +
-                   ":" + portNumber + "/",
+                   ":" + portNumber + "/" + db,
                    connectionProps);
 	        
 	    System.out.println("Connected to database");

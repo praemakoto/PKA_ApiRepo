@@ -7,20 +7,18 @@ import java.sql.SQLException;
 
 public class FlightyDAO {
 
-	public void connectTest(int custId) throws Exception {
-		String sql = "SELECT * FROM CUSTOMER WHERE CUST_ID = ?";
+	public void connectTest() throws Exception {
+		String sql = "select * from T_AIRPORT";
 
 		Connection conn = null;
 
 		try {
 			conn = ConnectionUtils.getConnection();
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setInt(1, custId);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				rs.getInt("CUST_ID");
+				rs.getString("CODE");
 				rs.getString("NAME");
-				rs.getInt("Age");
 			}
 			rs.close();
 			ps.close();
